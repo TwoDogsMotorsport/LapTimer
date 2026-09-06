@@ -16,15 +16,15 @@ If you have some basic electronics skill and can work with hand tools, I think t
 
 ### TRANSMITTER
 
-1 x Arduino Nano
-1 x 940nm Infra Red LED
-1 x 180 ohm 1/4W resistor
+* 1 x Arduino Nano
+* 1 x 940nm Infra Red LED
+* 1 x 180 ohm 1/4W resistor
 
 For a longer range unit, you can use multiple LEDs and an N-Channel MOSFET to drive them  Look at https://learn.adafruit.com/rgb-led-strips/usage for an example
 
 ### RECEIVER
 
-1 x Arduino Nano
-1 x TSOP382 (or equivalent) Infra Red Receiver module
-1 x 4-line x 20 character LCD display
+* 1 x Arduino Nano
+* 1 x TSOP382 (or equivalent) Infra Red Receiver module
+* 1 x 4-line x 20 character LCD display
 
