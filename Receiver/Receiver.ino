@@ -4,17 +4,23 @@
  * Prints a message on Serial when a valid trigger is decoded.
  */
 
-#include <IRremote.hpp>
+#include "receiver.h"
 
-// ========== CONFIGURE THIS ==========
-#define EXPECTED_ID        0xA5      // must match the transmitter's BEACON_ID
-#define IR_RECEIVE_PIN     2         // TSOP OUT pin (interrupt-capable recommended)
-// ====================================
+LiquidCrystal_I2C lcd(LCD_ADDR, LCD_COLS, LCD_ROWS);
 
 void setup() {
   Serial.begin(115200);
   while (!Serial);                   // wait for USB serial on some boards
 
+  /* Boot up the LCD */
+  lcd.init();
+  lcd.clear();
+  lcd.backlight();
+
+  lcd.setCursor(0, 0);
+  lcd.print("Receiver Ready!");
+
+  /* Start the IR module */
   IrReceiver.begin(IR_RECEIVE_PIN, ENABLE_LED_FEEDBACK);  // LED_BUILTIN blinks on receive
 
   Serial.println(F("IR Beacon Receiver ready"));
