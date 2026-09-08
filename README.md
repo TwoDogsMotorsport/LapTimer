@@ -2,11 +2,13 @@
 
 ## INTRODUCTION
 
-This is far from an original idea, but I still wanted to do it my own way:
+This is far from an original idea, but that doesn't mean you shouldn't have a go.
 
-I take part in private track days as well as club sprint races, where the result is based on individual lap times rather than track position.
+We take part in private track days as well as club sprint races, where the result is based on individual lap times rather than track position.
 
-I can just go out an buy a solution, and if you want a properly built product go for it, but where is the fun in that?  Commercial systems are expensive, but you're paying for R&D tooling and potentially higher accuracy that you can get for yourself, while DIY lets you tailor the system to your requirements.
+The benefit here is that you can tailor this system to suit your needs.  Want to store more laps, add a bigger display allow downloads?  All these things are possible.
+
+While this looks a fair bit like the AIM or Motec displays, it is not compatible with them, and if we've done our homework properly our system and theirs happily ignore each other.  If not, please raise an issue.
 
 ## CAN I BUILD THIS?
 
@@ -20,7 +22,7 @@ If you have some basic electronics skill and can work with hand tools, I think t
 * 1 x 940nm Infra Red LED
 * 1 x 180 ohm 1/4W resistor
 
-For a longer range unit, you can use multiple LEDs and an N-Channel MOSFET to drive them  Look at https://learn.adafruit.com/rgb-led-strips/usage for an example
+For a longer range unit, you can use multiple LEDs and an N-Channel MOSFET to drive them  Look at https://learn.adafruit.com/rgb-led-strips/usage for an example.  The included schematic shows four LEDs using a MOSFET, but you could run more (or less) if you want.
 
 ### RECEIVER
 
