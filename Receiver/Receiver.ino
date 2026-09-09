@@ -6,7 +6,7 @@
 
 #include "receiver.h"
 
-LiquidCrystal_I2C lcd(LCD_ADDR, LCD_COLS, LCD_ROWS);
+//LiquidCrystal_I2C lcd(LCD_ADDR, LCD_COLS, LCD_ROWS);
 
 void setup() {
   int i = 0;
@@ -15,12 +15,12 @@ void setup() {
   while (!Serial);                   // wait for USB serial on some boards
 
   /* Boot up the LCD */
-  lcd.init();
-  lcd.clear();
-  lcd.backlight();
+//  lcd.init();
+//  lcd.clear();
+//  lcd.backlight();
 
-  lcd.setCursor(0, 0);
-  lcd.print("Receiver Ready!");
+//  lcd.setCursor(0, 0);
+//  lcd.print("Receiver Ready!");
 
   /* Start the IR module */
   IrReceiver.begin(IR_RECEIVE_PIN, ENABLE_LED_FEEDBACK);  // LED_BUILTIN blinks on receive
@@ -30,7 +30,9 @@ void setup() {
   for(i=0; i < HISTORY_SIZE; i++)
     history[i] = 0;
 
-  Serial.println(F("IR Beacon Receiver ready"));
+  Serial.println(F("\nIR Beacon Receiver ready"));
+  Serial.print(F("Looking for Protocol 0x"));
+  Serial.println(NEC, HEX);
   Serial.print(F("Looking for ID 0x"));
   Serial.println(EXPECTED_ID, HEX);
 }
@@ -86,8 +88,9 @@ void calcTime(unsigned long worktime, unsigned int lap, unsigned int row) {
   unsigned long hrs = w_min / 60;
 
   if(row >=0 && row < LCD_ROWS) {
-    lcd.setCursor(0, row);
+//    lcd.setCursor(0, row);
     snprintf(buffer, sizeof(buffer), "%03d:%02d:%02d.%03d", hrs, mins, secs, ms);
-    lcd.print(buffer);
+    Serial.println(buffer);
+//    lcd.print(buffer);
   }
 }

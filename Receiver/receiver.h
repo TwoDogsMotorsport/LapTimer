@@ -1,4 +1,4 @@
-#include <LiquidCrystal_I2C.h>
+//#include <LiquidCrystal_I2C.h>
 #include <IRremote.hpp>
 
 #define _DEBUG              1
