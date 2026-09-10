@@ -10,9 +10,14 @@
 
 void setup() {
   int i = 0;
+
+  timing = FALSE;
   
   Serial.begin(115200);
   while (!Serial);                   // wait for USB serial on some boards
+
+  /* Set up inputs */
+  pinMode(IGNITION_PIN, INPUT_PULLUP);
 
   /* Boot up the LCD */
 //  lcd.init();
@@ -38,29 +43,47 @@ void setup() {
 }
 
 void loop() {
+  /* Spin if ignition signal is off */
+  while(digitalRead(IGNITION_PIN) == HIGH);
+
   if (IrReceiver.decode()) {
     // Only accept NEC protocol and exact address match
     if (IrReceiver.decodedIRData.protocol == NEC &&
         IrReceiver.decodedIRData.address == EXPECTED_ID) {
-
+#ifdef _DEBUG
       Serial.print(F(">>> TRIGGER received – ID 0x"));
       Serial.print(IrReceiver.decodedIRData.address, HEX);
       Serial.print(F("  cmd 0x"));
       Serial.println(IrReceiver.decodedIRData.command, HEX);
-
-      // Later you will start/stop your lap timer here
+#endif
+      // Toggle the timing process
+      switch (timing) {
+        case TRUE:
+          stopClock();
+          break;
+        case FALSE:
+          startClock();
+          break;
+      }
+      timing = !timing;
     }
 
     IrReceiver.resume();             // ready for the next frame
   }
 }
 
-void startClock(void) {
+void startClock(void) {  
   startmillis = millis();
+#ifdef _DEBUG
+  Serial.println("START!");
+#endif  
 }
 
 void stopClock(void) {
   millisecs = millis() - startmillis;
+#ifdef _DEBUG
+  Serial.println("STOP!");
+#endif  
   /* Save the time */
   if (history_counter < (HISTORY_SIZE -1)) {
     history[history_counter] = millisecs;

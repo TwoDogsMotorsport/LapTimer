@@ -7,14 +7,24 @@
 // ========== CONFIGURE THIS ==========
 #define EXPECTED_ID         0xA5      // must match the transmitter's BEACON_ID
 #define IR_RECEIVE_PIN      2         // TSOP OUT pin (interrupt-capable recommended)
+#define IGNITION_PIN        3         // Indicate car is running
 
 #define LCD_ROWS            4         // Available rows on LCD
 #define LCD_COLS            20        // Available columns
 #define LCD_ADDR            0x3F      // Default I2C address
 // ====================================
 
+#ifndef TRUE
+#define TRUE 1
+#endif
+
+#ifndef FALSE
+#define FALSE 0
+#endif
+
 unsigned long millisecs;
 unsigned long startmillis;
+bool timing;
 
 /* The next part is experimental for now.
  *  Track a number of laps using a pre-defined
